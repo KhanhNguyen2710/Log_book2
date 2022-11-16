@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
     EditText URL_input;
     List<String> urlList = new ArrayList<>(); // List img
 
+    public static boolean IsValidUrl(String urlString) {
+        try {
+            new URL(urlString);
+            return URLUtil.isValidUrl(urlString) && Patterns.WEB_URL.matcher(urlString).matches();
+        } catch (MalformedURLException ignored) {
+        }
+        return false;
+    }
 
     int i  ;
 
@@ -47,16 +56,21 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String url = URL_input.getText().toString();
-                    if(!(url.length() == 0)) {
-                        urlList.add(url);
-                        i = urlList.size() - 1;
-                        Picasso.get()
-                                .load(urlList.get(i))
-                                .into(imageView);
-                    }else{
-                        Toast.makeText(MainActivity.this, "Invalid url", Toast.LENGTH_SHORT).show();
 
-                    }
+                        if(!(url.length() ==0)){
+                            if (IsValidUrl(url)){
+                            urlList.add(url);
+                            i = urlList.size() - 1;
+                            Picasso.get()
+                                    .load(urlList.get(i))
+                                    .into(imageView);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Invalid link", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(MainActivity.this, "Url can not be empty", Toast.LENGTH_SHORT).show();
+                        }
+
                 }
 
             });
