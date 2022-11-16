@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listImg">
+        <item>https://i.pinimg.com/564x/47/f9/71/47f971406ef35c5635a69692328351fb.jpg</item>
+        <item>https://i.pinimg.com/564x/d4/61/e3/d461e3f47bf847571e2aa1fba4a20902.jpg</item>
+        <item>https://i.pinimg.com/564x/5c/b7/9d/5cb79df1249b6512bbcd6fc2cb0cae35.jpg</item>
+    </string-array>
+</resources>
